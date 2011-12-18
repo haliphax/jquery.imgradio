@@ -1,0 +1,62 @@
+<html>
+<head>
+	<title>jQuery.imgradio Demonstration</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.imgradio.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('.radio').imgradio();
+			$('.checkbox').imgradio();
+			$('.rating').imgradio(1);
+		});
+	</script>
+	<style type="text/css">
+		span.radio_img {
+			display: inline-block;
+			height: 32px;
+			width: 33px;
+			margin-right: 2px;
+			background:url(star-empty.gif);
+		}
+		span.radio_img.checked {
+			background:url(star-full.gif);
+		}
+	</style>
+</head>
+<body>
+	<h1>jQuery.imgradio Demonstration</h1>
+	<p>
+		View this page's source for a closer look at how it all works.
+		<br />
+		For more information, visit the <a href="http://plugins.jquery.com/project/imgradio/">Image Radio project page</a> on <a href="http://plugins.jquery.com/">plugins.jquery.com</a>.
+	</p>
+	<form method="POST">
+		<h2>Standard radio button behavior</h2>
+		<p>
+			<input type="radio" name="myradio" id="radio_1" class="radio" value="1" /><label for="radio_1">1</label>
+			<input type="radio" name="myradio" id="radio_2" class="radio" value="2" /><label for="radio_2">2</label>
+			<input type="radio" name="myradio" id="radio_3" class="radio" value="3" /><label for="radio_3">3</label>
+			<input type="radio" name="myradio" id="radio_4" class="radio" value="4" /><label for="radio_4">4</label>
+			<input type="radio" name="myradio" id="radio_5" class="radio" value="5" /><label for="radio_5">5</label>
+		</p>
+		<h2>Standard check box behavior</h2>
+		<p>
+			<input type="checkbox" name="mycheckbox" id="checkbox_1" class="checkbox" value="1" /><label for="checkbox_1">1</label>
+			<input type="checkbox" name="mycheckbox" id="checkbox_2" class="checkbox" value="2" /><label for="checkbox_2">2</label>
+			<input type="checkbox" name="mycheckbox" id="checkbox_3" class="checkbox" value="3" /><label for="checkbox_3">3</label>
+			<input type="checkbox" name="mycheckbox" id="checkbox_4" class="checkbox" value="4" /><label for="checkbox_4">4</label>
+			<input type="checkbox" name="mycheckbox" id="checkbox_5" class="checkbox" value="5" /><label for="checkbox_5">5</label>		
+		</p>
+		<h2>"Rating" system behavior</h2>
+		<p>
+			<input type="radio" name="myrating" id="rating_1" class="rating" value="1" /><label for="rating_1">1</label>
+			<input type="radio" name="myrating" id="rating_2" class="rating" value="2" /><label for="rating_2">2</label>
+			<input type="radio" name="myrating" id="rating_3" class="rating" value="3" /><label for="rating_3">3</label>
+			<input type="radio" name="myrating" id="rating_4" class="rating" value="4" /><label for="rating_4">4</label>
+			<input type="radio" name="myrating" id="rating_5" class="rating" value="5" /><label for="rating_5">5</label>			
+		</p>
+	</form>
+	<br />
+	<p>&copy;2011 Todd Boyd - <a href="http://oddnetwork.org/">oddnetwork.org</a></p>
+</body>
+</html>

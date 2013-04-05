@@ -1,9 +1,9 @@
 /* *****************************************************************************
 
 Script:		Image Radio (jQuery Extension)
-Version:	1.0.2
+Version:	1.0.3
 Author:		Todd Boyd
-Created:	2011/6/16
+Created:	2013/4/5
 
 Description:
 	This extension replaces standard HTML checkboxes and radio buttons with
@@ -35,17 +35,22 @@ Examples:
 		// affect all objects in the selector array
 		this.each(function() {
 			// get IDs
-			var radioid = $(this).attr("id");
-			var imgid = radioid + "_img";
+			var
+				$this = $(this)
+				, radioid = $this.attr("id")
+				, imgid = radioid + "_img"
+				, html
+			;
+			
 			// hide the original inputs
-			$(this).css("display", "none");
+			$this.css("display", "none");
 			// hide the label (if any)
 			$("label[for=\"" + radioid + "\"]").css("display", "none");
 			// inject the <span /> for our image replacement
-			var html = "<span class=\"radio_img"
-				+ ($(this).is(":checked") ? " checked" : "")
+			html = "<span class=\"radio_img"
+				+ ($this.is(":checked") ? " checked" : "")
 				+ "\" id=\"" + imgid + "\" data-imgradiogroup=\""
-				+ $(this).attr("name") + "\"></span>";
+				+ $this.attr("name") + "\"></span>";
 			$(html).insertAfter($("#" + radioid));
 			$("#" + imgid)
 				// remember underlying element
@@ -53,46 +58,52 @@ Examples:
 				// handle clicks (check/uncheck)
 				.click(function()
 				{
-					var el = $("#" + $(this).data("imgradio_el"));
+					var
+						$this = $(this)
+						, $el = $("#" + $this.data("imgradio_el"))
+						, $form = $el.parents("form:first")
+					;
 					
 					// unchecking
-					if($(el).is(":checked"))
+					if($el.is(":checked"))
 					{
-						$(el).removeAttr("checked");
-						var form = $(el).parents("form:first");
-						if(! form) form = $(document);
+						$el.removeAttr("checked");						
+						if(! $form) $form = $(document);
 						
 						// ratings system
 						if(typeof ratings != "undefined")
 						{
 							// uncheck all others in our group in the form
-							form
+							$form
 								.find("[data-imgradiogroup=\""
-									+ $(this).attr("data-imgradiogroup")
+									+ $this.attr("data-imgradiogroup")
 									+ "\"]")
 								.removeClass("checked");
 						}
 						else
-							$(this).removeClass("checked");
+							$this.removeClass("checked");
 					}
 					else
 					// checking
 					{
 						// checkbox lists don"t uncheck each other, only radios
-						if($(el).attr("type") != "checkbox")
+						if($el.attr("type") != "checkbox")
 						{
-							var that = this;
-							var form = $(el).parents("form:first");
-							if(! form) form = $(document);
+							var
+								that = this
+								, $radiogroup
+							;
+							
+							if(! $form) $form = $(document);
 							// first uncheck all others in the list
-							form
-								.find("[name=\"" + $(el).attr("name") + "\"]")
+							$form
+								.find("[name=\"" + $el.attr("name") + "\"]")
 								.removeAttr("checked");
-							var radiogroup =
-								form.find("[data-imgradiogroup=\""
-									+ $(this).attr("data-imgradiogroup")
+							$radiogroup =
+								$form.find("[data-imgradiogroup=\""
+									+ $this.attr("data-imgradiogroup")
 									+ "\"]");
-							radiogroup.removeClass("checked");
+							$radiogroup.removeClass("checked");
 							
 							// ratings system
 							if(typeof ratings != "undefined")
@@ -100,7 +111,7 @@ Examples:
 								var stop = false;
 								
 								// check previous elements
-								radiogroup.each(function()
+								$radiogroup.each(function()
 								{
 									if(this === that || stop)
 									{
@@ -114,8 +125,8 @@ Examples:
 						}
 						
 						// check this element
-						$(el).attr("checked", "checked");
-						$(this).addClass("checked");
+						$el.attr("checked", "checked");
+						$this.addClass("checked");
 					}
 				});
 		});

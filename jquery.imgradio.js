@@ -1,9 +1,10 @@
 /* *****************************************************************************
 
 Script:		Image Radio (jQuery Extension)
-Version:	1.0.3
-Author:		Todd Boyd
+Version:	1.0.4
+Author:		Todd Boyd <http://roadha.us>
 Created:	2013/4/5
+Updated:	2013/7/27
 
 Description:
 	This extension replaces standard HTML checkboxes and radio buttons with
@@ -43,7 +44,10 @@ Examples:
 			;
 			
 			// hide the original inputs
-			$this.css("display", "none");
+			$this.css({
+				visibility: 'hidden'
+				, position: 'absolute'
+			});
 			// hide the label (if any)
 			$("label[for=\"" + radioid + "\"]").css("display", "none");
 			// inject the <span /> for our image replacement
@@ -125,8 +129,8 @@ Examples:
 						}
 						
 						// check this element
-						$el.attr("checked", "checked");
 						$this.addClass("checked");
+						$el.prop('checked', true).trigger('change');
 					}
 				});
 		});
